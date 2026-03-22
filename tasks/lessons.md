@@ -19,3 +19,8 @@
 **Hata:** TestMocks.cs'de stub tipler tanımlandı, sonra gerçek implementasyonlar yazılınca duplicate/ambiguous hatalar oluştu.
 **Kural:** Stub dosyaları gerçek implementasyon yazılır yazılmaz kaldırılmalı veya conditional compile ile korunmalı.
 **Nasıl uygulanır:** Gerçek Data/Save/ dosyaları yazıldığında TestMocks.cs otomatik temizlenmeli.
+
+## Ders 4 — Play Mode Testleri Batch Mode'da Takılabilir (2026-03-22)
+**Hata:** Play Mode testleri batchmode'da Boot sahnesini yüklerken GameBootstrapper async init'te takıldı.
+**Kural:** Play Mode testleri Unity Editor'de interaktif çalıştırılmalı. Batchmode sadece Edit Mode testleri için güvenilir.
+**Nasıl uygulanır:** CI'da Edit Mode testlerini batchmode ile, Play Mode testlerini interaktif veya timeout ile çalıştır.

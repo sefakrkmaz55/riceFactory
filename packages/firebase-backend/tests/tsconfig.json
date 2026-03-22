@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es2022",
+    "lib": ["es2022"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "outDir": "../lib-tests",
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["../functions/node_modules/*"]
+    }
+  },
+  "include": ["./**/*.ts"]
+}
