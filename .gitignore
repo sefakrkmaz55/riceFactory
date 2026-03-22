@@ -59,7 +59,11 @@ venv/
 .claude/settings.local.json
 
 # Build artifacts
+builds/
 *.apk
 *.aab
 *.ipa
 *.unitypackage
+
+# Unity temp
+packages/unity-game/.utmp/
