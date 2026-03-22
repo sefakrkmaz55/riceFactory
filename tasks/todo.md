@@ -29,3 +29,11 @@
 - [x] Sosyal özellikler (liderboard + arkadaş sistemi + UI)
 - [x] Monetizasyon entegrasyonu (reklam + IAP + Battle Pass + mağaza UI)
 - [x] Analytics event'leri (35+ event, bridge, KPI dokümanı)
+
+## Faz 5 — Unity Sahne Kurulumu & Çalıştırılabilir Oyun
+- [x] GameBootstrapper — 21 servisi doğru sırada başlatma
+- [x] SceneController — fade efektli async sahne geçişi
+- [x] MainMenuController — Oyna/Devam/Ayarlar/versiyon
+- [x] GameSceneController — HUD, fabrika kartları, tick döngüsü
+- [x] FactoryCardUI — fabrika kart bileşeni (açık/kilitli)
+- [x] TutorialController — 4 adımlı onboarding, spotlight, analytics

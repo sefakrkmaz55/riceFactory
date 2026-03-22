@@ -106,9 +106,9 @@ namespace RiceFactory.Production
             return _productChain[index];
         }
 
-#if UNITY_EDITOR
         /// <summary>
-        /// balance_config.json'dan deger yuklemek icin editor yardimci metodu.
+        /// FactoryConfigData'dan runtime'da deger yuklemek icin yardimci metot.
+        /// Editor'de balance_config.json import, runtime'da FactoryConfigs'ten doldurma icin kullanilir.
         /// </summary>
         public void SetFromConfig(
             string id, string name, string desc,
@@ -128,7 +128,14 @@ namespace RiceFactory.Production
             _secondaryProductionTime = secondaryTime;
             _secondaryPrice = secondaryPrice;
         }
-#endif
+
+        /// <summary>
+        /// Uretim zinciri girdilerini runtime'da ayarlar.
+        /// </summary>
+        public void SetProductChain(List<ProductChainEntry> chain)
+        {
+            _productChain = chain ?? new List<ProductChainEntry>();
+        }
     }
 
     /// <summary>
