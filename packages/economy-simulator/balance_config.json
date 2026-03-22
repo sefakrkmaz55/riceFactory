@@ -1,0 +1,303 @@
+{
+  "version": "1.0.0",
+
+  "general": {
+    "globalProductionMultiplier": 1.0,
+    "globalSellPriceMultiplier": 1.0,
+    "globalUpgradeCostMultiplier": 1.0,
+    "softCurrencyInflationTarget": 0.15,
+    "hardCurrencyDailyFreeTarget": 56
+  },
+
+  "machine": {
+    "maxLevel": 5,
+    "speedMultipliers": [1.0, 1.5, 2.2, 3.5, 5.0],
+    "costExponent": 5.0,
+    "qualityFloors": [1, 1, 2, 3, 4],
+    "qualityCeilings": [1, 2, 3, 4, 5]
+  },
+
+  "worker": {
+    "maxLevel": 50,
+    "efficiencyPerLevel": 0.02,
+    "costBase": 50,
+    "costExponent": 2.2,
+    "skillTypes": ["speed", "quality", "capacity", "automation"]
+  },
+
+  "quality": {
+    "levels": 5,
+    "priceMultipliers": [1.0, 1.3, 1.7, 2.2, 3.0],
+    "dropWeights": [0.40, 0.30, 0.20, 0.08, 0.02]
+  },
+
+  "facilities": [
+    {
+      "id": "rice_field",
+      "name": "Pirinc Tarlasi",
+      "order": 1,
+      "unlockCost": 0,
+      "machineBaseCost": 100,
+      "baseProductionPerMinute": 12,
+      "baseProductionTime_s": 5,
+      "basePrice": 5,
+      "mainProduct": "celtik",
+      "secondaryProduct": "pirinc",
+      "secondaryProductionTime_s": 8,
+      "secondaryPrice": 15,
+      "baseRevenuePerMinute": 112.5,
+      "maxRevenuePerMinute": 1125
+    },
+    {
+      "id": "factory",
+      "name": "Pirinc Fabrikasi",
+      "order": 2,
+      "unlockCost": 1000,
+      "machineBaseCost": 500,
+      "baseProductionPerMinute": 5,
+      "baseProductionTime_s": 12,
+      "basePrice": 40,
+      "mainProduct": "pirinc_unu",
+      "secondaryProduct": "pirinc_nisastasi",
+      "secondaryProductionTime_s": 15,
+      "secondaryPrice": 55,
+      "baseRevenuePerMinute": 200,
+      "maxRevenuePerMinute": 2000
+    },
+    {
+      "id": "bakery",
+      "name": "Firin",
+      "order": 3,
+      "unlockCost": 10000,
+      "machineBaseCost": 2500,
+      "baseProductionPerMinute": 4,
+      "baseProductionTime_s": 15,
+      "basePrice": 80,
+      "mainProduct": "pirinc_ekmegi",
+      "secondaryProduct": "mochi",
+      "secondaryProductionTime_s": 25,
+      "secondaryPrice": 180,
+      "baseRevenuePerMinute": 320,
+      "maxRevenuePerMinute": 3200
+    },
+    {
+      "id": "restaurant",
+      "name": "Restoran",
+      "order": 4,
+      "unlockCost": 100000,
+      "machineBaseCost": 15000,
+      "baseProductionPerMinute": 3,
+      "baseProductionTime_s": 20,
+      "basePrice": 150,
+      "mainProduct": "pilav_tabagi",
+      "secondaryProduct": "sushi_tabagi",
+      "secondaryProductionTime_s": 30,
+      "secondaryPrice": 350,
+      "baseRevenuePerMinute": 700,
+      "maxRevenuePerMinute": 7000
+    },
+    {
+      "id": "market",
+      "name": "Market Zinciri",
+      "order": 5,
+      "unlockCost": 1000000,
+      "machineBaseCost": 100000,
+      "baseProductionPerMinute": 6,
+      "baseProductionTime_s": 10,
+      "basePrice": 100,
+      "mainProduct": "pirinc_paketi",
+      "secondaryProduct": "gurme_kutu",
+      "secondaryProductionTime_s": 30,
+      "secondaryPrice": 800,
+      "baseRevenuePerMinute": 1600,
+      "maxRevenuePerMinute": 16000
+    },
+    {
+      "id": "global_distribution",
+      "name": "Kuresel Dagitim",
+      "order": 6,
+      "unlockCost": 25000000,
+      "machineBaseCost": 2500000,
+      "baseProductionPerMinute": 0.5,
+      "baseProductionTime_s": 120,
+      "basePrice": 5000,
+      "mainProduct": "asya_paketi",
+      "secondaryProduct": "luks_ihracat",
+      "secondaryProductionTime_s": 300,
+      "secondaryPrice": 20000,
+      "baseRevenuePerMinute": 4000,
+      "maxRevenuePerMinute": 40000
+    }
+  ],
+
+  "facilityStar": {
+    "maxStars": 5,
+    "costExponent": 3.0,
+    "productionBonuses": [0.0, 0.25, 0.50, 1.00, 2.00]
+  },
+
+  "prestige": {
+    "franchiseMinEarnings": 1000000,
+    "fpDivisor": 1000000,
+    "fpBonusPerStar5": 0.1,
+    "startingMoneyBase": 0,
+    "bonuses": {
+      "production_speed": {
+        "fpPerLevel": 5,
+        "maxLevel": 20,
+        "effectPerLevel": 0.10,
+        "description": "Uretim Hizi +%10 / seviye"
+      },
+      "starting_money": {
+        "fpPerLevel": 3,
+        "maxLevel": 10,
+        "effectPerLevel": 0.50,
+        "description": "Baslangic Parasi +%50 / seviye"
+      },
+      "offline_earnings": {
+        "fpPerLevel": 4,
+        "maxLevel": 20,
+        "effectPerLevel": 0.05,
+        "description": "Offline Kazanc +%5 / seviye"
+      },
+      "facility_discount": {
+        "fpPerLevel": 6,
+        "maxLevel": 8,
+        "effectPerLevel": 0.10,
+        "description": "Tesis Acma Maliyeti -%10 / seviye"
+      },
+      "critical_production": {
+        "fpPerLevel": 8,
+        "maxLevel": 10,
+        "effectPerLevel": 0.02,
+        "description": "Kritik Uretim Sansi +%2 / seviye"
+      },
+      "special_worker": {
+        "fpPerLevel": 15,
+        "maxLevel": 1,
+        "effectPerLevel": 1.0,
+        "description": "Ozel Calisan Acma (tek seferlik)"
+      },
+      "city_theme": {
+        "fpPerLevel": 10,
+        "maxLevel": 5,
+        "effectPerLevel": 1.0,
+        "description": "Yeni Sehir Temasi (kozmetik)"
+      }
+    }
+  },
+
+  "offline": {
+    "baseEfficiency": 0.30,
+    "maxHoursFree": 8,
+    "maxHoursPremium": 12,
+    "adBonusHours": 4,
+    "maxEfficiencyCap": 1.80,
+    "stockCapBreak": true
+  },
+
+  "diamond": {
+    "dailyFreeAverage": {
+      "casual": 25,
+      "active": 56
+    },
+    "costs": {
+      "production_boost_30min": 15,
+      "research_speedup": 20,
+      "order_refresh": 10,
+      "special_worker_box": 50,
+      "cosmetic_theme_min": 100,
+      "cosmetic_theme_max": 500,
+      "extra_research_slot_24h": 30,
+      "battle_pass_season": 500,
+      "minigame_cooldown_reset": 5
+    },
+    "sources": {
+      "daily_login": 10,
+      "milestone": 5,
+      "order_rare": 3,
+      "minigame_gold": 8,
+      "ad_wheel": 10,
+      "weekly_leaderboard": 5,
+      "friend_visit": 10,
+      "battle_pass_free": 5
+    }
+  },
+
+  "research": {
+    "branches": ["otomasyon", "kalite", "hiz", "kapasite"],
+    "maxLevel": 8,
+    "costExponent": 3.0,
+    "timeExponent": 2.0,
+    "parallelSlotsFree": 1,
+    "parallelSlotsPremium": 2,
+    "baseCosts": {
+      "otomasyon": 500,
+      "kalite": 500,
+      "hiz": 500,
+      "kapasite": 500
+    },
+    "baseTime_minutes": {
+      "otomasyon": 5,
+      "kalite": 5,
+      "hiz": 5,
+      "kapasite": 5
+    }
+  },
+
+  "orders": {
+    "boardSize": 3,
+    "refreshMinutes": 15,
+    "reputationPerOrder": 10,
+    "reputationSellBonus": 0.0001
+  },
+
+  "minigame": {
+    "cooldownHours": 2.0,
+    "maxStacked": 3,
+    "bonusDurationMinutes": 30,
+    "bonusMultipliers": {
+      "bronze": 2,
+      "silver": 3,
+      "gold": 5
+    }
+  },
+
+  "combo": {
+    "maxMultiplier": 2.0,
+    "resetOnBackground": true,
+    "tiers": [
+      {"minutes": 1, "multiplier": 1.1},
+      {"minutes": 3, "multiplier": 1.3},
+      {"minutes": 5, "multiplier": 1.5},
+      {"minutes": 10, "multiplier": 1.8},
+      {"minutes": 15, "multiplier": 2.0}
+    ]
+  },
+
+  "ads": {
+    "dailyMaxCount": 12,
+    "minIntervalMinutes": 3,
+    "returnRewardMultiplier": 2.0,
+    "boostDurationMinutes": 30,
+    "boostMultiplier": 2.0
+  },
+
+  "demand": {
+    "fluctuation": 0.3,
+    "cycleDurationMinutes": 60,
+    "criticalProductionChance": 0.05
+  },
+
+  "playerLevel": {
+    "formula_note": "floor(log10(totalEarnings + 1) * 5)"
+  },
+
+  "time_targets": {
+    "day1_total_earnings": [15000, 50000],
+    "day7_total_earnings": [500000, 2000000],
+    "day30_total_earnings": [50000000, 500000000],
+    "day90_total_earnings": [5000000000, 50000000000],
+    "first_franchise_days": [14, 21]
+  }
+}

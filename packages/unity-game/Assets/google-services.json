@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "842807985380",
+    "project_id": "ricefactory-game",
+    "storage_bucket": "ricefactory-game.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:842807985380:android:71bc8c0e5a5a86ded258f1",
+        "android_client_info": {
+          "package_name": "com.ricefactory.game"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCXUFsuwvUzdGDMYuOQ_wRD_iNPyjEIhOM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

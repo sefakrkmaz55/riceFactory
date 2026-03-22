@@ -1,0 +1,10 @@
+# riceFactory Ekonomi Simulatoru Bagimliliklari
+# Python 3.10+ gereklidir
+
+# Standart kutuphane disinda ek bagimlilik yoktur.
+# Tum fonksiyonlar math, json, argparse, dataclasses ile calisir.
+#
+# Opsiyonel (gelismis raporlama icin):
+# tabulate>=0.9.0        # Guzel tablo formatlama
+# matplotlib>=3.7.0      # Grafik cizimi
+# pandas>=2.0.0          # Veri analizi

@@ -1,0 +1,137 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ============================================================
+    // YARDIMCI FONKSIYONLAR
+    // ============================================================
+
+    // Kullanicinin kimlik dogrulamasi yapilmis mi?
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Istegi yapan kullanici, dokuman sahibi mi?
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Istek Cloud Functions'dan mi geliyor? (Admin SDK token kontrolu)
+    function isCloudFunction() {
+      return isAuthenticated()
+        && request.auth.token.firebase != null
+        && request.auth.token.firebase.sign_in_provider == "custom";
+    }
+
+    // Belirli alanlarin istemci tarafindan degistirilmedigini dogrula
+    // Anti-cheat: korunan alanlar sadece Cloud Functions tarafindan yazilabilir
+    function protectedFieldsUnchanged() {
+      let protectedFields = ['franchisePoints', 'totalLifetimeEarnings', 'isBanned', 'banReason'];
+      return (!request.resource.data.diff(resource.data).affectedKeys().hasAny(protectedFields));
+    }
+
+    // ============================================================
+    // OYUNCU KOLEKSIYONU
+    // ============================================================
+
+    match /players/{userId} {
+      // Oyuncu sadece kendi dokumanini okuyabilir
+      allow read: if isOwner(userId);
+
+      // Oyuncu kendi dokumanini yazabilir AMA korunan alanlari degistiremez
+      allow create: if isOwner(userId);
+      allow update: if isOwner(userId) && protectedFieldsUnchanged();
+
+      // Silme izni yok (hesap silme Cloud Functions uzerinden)
+      allow delete: if false;
+
+      // --- Alt koleksiyonlar ---
+
+      // Save data: sadece sahibi erisebilir
+      match /save_data/{docId} {
+        allow read, write: if isOwner(userId);
+      }
+
+      // Public data: herkes okuyabilir, sadece sahibi yazabilir
+      match /public_data/{docId} {
+        allow read: if isAuthenticated();
+        allow write: if isOwner(userId);
+      }
+
+      // Boost'lar: sahibi okuyabilir, yazma Cloud Functions uzerinden
+      match /boosts/{boostId} {
+        allow read: if isOwner(userId);
+        allow write: if false; // Sadece Cloud Functions (Admin SDK)
+      }
+
+      // Transaction loglar: sahibi okuyabilir, yazma Cloud Functions uzerinden
+      match /transactions/{transactionId} {
+        allow read: if isOwner(userId);
+        allow write: if false; // Sadece Cloud Functions (Admin SDK)
+      }
+    }
+
+    // ============================================================
+    // LIDERBOARD KOLEKSIYONU
+    // ============================================================
+
+    match /leaderboards/{boardId} {
+      // Herkes okuyabilir (herkese acik siralama)
+      allow read: if isAuthenticated();
+      // Yazma sadece Cloud Functions (Admin SDK) uzerinden
+      allow write: if false;
+
+      // Alt koleksiyonlar (earnings, production, orders, quality, emperor, franchise_master)
+      match /{category}/{entryId} {
+        allow read: if isAuthenticated();
+        allow write: if false; // Sadece Cloud Functions
+      }
+    }
+
+    // ============================================================
+    // TICARET KOLEKSIYONU
+    // ============================================================
+
+    match /trades/{tradeId} {
+      // Herkes acik ticaretleri gorebilir
+      allow read: if isAuthenticated();
+      // Ticaret olusturma: kimlik dogrulama + satici kendisi olmali
+      allow create: if isAuthenticated()
+        && request.resource.data.sellerId == request.auth.uid
+        && request.resource.data.status == "open";
+      // Guncelleme ve silme Cloud Functions uzerinden
+      allow update, delete: if false;
+    }
+
+    // ============================================================
+    // ETKINLIK KOLEKSIYONU
+    // ============================================================
+
+    match /events/{eventId} {
+      // Herkes okuyabilir (aktif etkinlik bilgisi)
+      allow read: if isAuthenticated();
+      // Yazma sadece Cloud Functions (Admin SDK)
+      allow write: if false;
+    }
+
+    // ============================================================
+    // SUNUCU META VERISI
+    // ============================================================
+
+    match /server/{docId} {
+      // Herkes okuyabilir (sunucu zamani, config, duyurular)
+      allow read: if isAuthenticated();
+      // Yazma sadece Cloud Functions (Admin SDK)
+      allow write: if false;
+    }
+
+    // ============================================================
+    // VARSAYILAN: Diger tum koleksiyonlar icin erisim engeli
+    // ============================================================
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
