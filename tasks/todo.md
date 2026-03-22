@@ -30,6 +30,12 @@
 - [x] Monetizasyon entegrasyonu (reklam + IAP + Battle Pass + mağaza UI)
 - [x] Analytics event'leri (35+ event, bridge, KPI dokümanı)
 
+## Faz 6 — Tamamlanan Ek Görevler
+- [x] Unity sahneleri + prefab'lar + Build Settings
+- [x] Sprite'lar + ses efektleri + satisfying feedback
+- [x] Play Mode testleri + Firebase emulator test altyapısı
+- [x] 6 Mini-game (Hasat, Kalite Kontrol, Fırıncılık, Sipariş Hızı, Raf Düzenleme, Lojistik)
+
 ## Faz 5 — Unity Sahne Kurulumu & Çalıştırılabilir Oyun
 - [x] GameBootstrapper — 21 servisi doğru sırada başlatma
 - [x] SceneController — fade efektli async sahne geçişi

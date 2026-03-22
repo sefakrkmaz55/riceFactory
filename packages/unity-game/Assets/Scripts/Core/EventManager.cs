@@ -265,8 +265,11 @@ namespace RiceFactory.Core.Events
     public struct MiniGameCompletedEvent : IGameEvent
     {
         public string MiniGameId;
-        public MiniGameGrade Grade; // Bronze, Silver, Gold
+        public MiniGameGrade Grade; // S, A, B, C
+        public int Score;
         public float BonusMultiplier;
+        public int CoinReward;
+        public float BoostDuration; // Saniye cinsinden uretim boost suresi
     }
 
     // ---- Milestone Event'leri ----
@@ -324,8 +327,9 @@ namespace RiceFactory.Core.Events
     /// <summary>Mini-game basari dereceleri.</summary>
     public enum MiniGameGrade
     {
-        Bronze,
-        Silver,
-        Gold
+        C,      // Bronz — minimum basari
+        B,      // Gumus — orta basari
+        A,      // Altin — iyi basari
+        S       // Elmas — mukemmel basari
     }
 }
